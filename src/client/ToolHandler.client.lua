@@ -35,5 +35,3 @@ if playerRopeTool then
     else
         return 10
 end
-
-sd
