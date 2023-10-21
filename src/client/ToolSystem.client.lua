@@ -6,6 +6,7 @@ local Tool = script.Parent --Tool
 local playerMouse = player:GetMouse()
 local Target = playerMouse.Target
 local Highlight = Instance.new("Highlight") --Highlight Instance
+local RopeToolEquipped = false
 -------------------------------------------------------------------------------------------
 
 
@@ -35,13 +36,14 @@ end
 
 
 -------------------------------------------------------------------->>>[ON CLIENT JOIN EVENT /ON TOOL EQUIPPED EVENT]
-Players.PlayerAdded:Connect(function(player)
-local ClientRopeTool = player.Backpack:WaitForChild("RopeTool")
- if ClientRopeTool then
-    OnRopeToolActivated()
-    else
-    return 0 
-    end
-end)
 
+if player.Backpack:FindFirstChild("RopeTool") and RopeToolEquipped then
+    RopeToolEquipped = true
+    player.Backpack.RopeTool.Equipped:Connect(function()
+        print("PALYER EQUIPPED TOOL")
+    end)
+else
+    RopeToolEquipped = false
+    return
+end
 -------------------------------------------------------------------------------------------------
