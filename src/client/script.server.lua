@@ -3,13 +3,13 @@ local rope
 local att0
 local att1
 local newRope
---------------------------[END]-------------------------------------------------------
+--------------------------[END]-----------------------------------------------------------------
 
 --------------------------[OnServerEvent]-------------------------------------------------------
 script.Parent.Parent.RemoteEvent.OnServerEvent:Connect(function(plr,target,hit)
 	if rope == nil then
-		if target == nil then return end
-		if target:IsA('Sky') or target:IsA('Atmosphere') or target == nil then return end
+		if target == nil then return end --If theres no target than return the statement
+		if target:IsA('Sky') or target:IsA('Atmosphere') or target == nil then return end --Checks wheter the mouse is pointing to the skybox or atmosphere
 		if target.Name ~= 'Baseplate' then
 			if (script.Parent.Parent.Parent.HumanoidRootPart.Position - target.Position).Magnitude > 30 then return end
 			rope = Instance.new('RopeConstraint')
@@ -54,7 +54,7 @@ script.Parent.Parent.RemoteEvent.OnServerEvent:Connect(function(plr,target,hit)
 		end
 	end
 end)
---------------------------[END-------------------------------------------------------
+--------------------------[END]-------------------------------------------------------
 
 --------------------------[OnToolUnEquipped]-------------------------------------------------------
 script.Parent.Parent.Unequipped:Connect(function()
