@@ -15,19 +15,20 @@ script.Parent.Parent.RemoteEvent.OnServerEvent:Connect(function(plr,target,hit)
 			rope = Instance.new('RopeConstraint')
 			att0 = Instance.new('Attachment')
 			att1 = Instance.new('Attachment')
-			att0.Parent = target
-			att1.Parent = script.Parent.Parent.Parent.HumanoidRootPart
+			att0.Parent = target --Attache to target
+			att1.Parent = script.Parent.Parent.Parent.HumanoidRootPart ---Attach to me
 			rope.Visible = true
 			rope.Parent = script.Parent.Parent.Parent.HumanoidRootPart
 			rope.Attachment0 = att0
 			rope.Attachment1 = att1
-			rope.Length = (script.Parent.Parent.Parent.HumanoidRootPart.Position - target.Position).Magnitude
+			rope.Length = (script.Parent.Parent.Parent.HumanoidRootPart.Position - target.Position).Magnitude ---How is it between me and the target
+            print(rope.Length)
 		else
 			newRope = game.ServerStorage.ForRope:Clone()
 			newRope.Parent = workspace
 			newRope.CFrame = hit
 			task.wait(0.05)
-			if (script.Parent.Parent.Parent.HumanoidRootPart.Position - newRope.Position).Magnitude > 30 then newRope:Destroy() newRope = nil return end
+			if (script.Parent.Parent.Parent.HumanoidRootPart.Position - newRope.Position).Magnitude > 30 then newRope:Destroy() newRope = nil return end ---If the distance between the Roper and the targ is more than 30 studs than it destroys the rope
 			rope = Instance.new('RopeConstraint')
 			att0 = Instance.new('Attachment')
 			att1 = Instance.new('Attachment')
