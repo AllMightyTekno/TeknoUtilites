@@ -23,10 +23,12 @@ local ToucehdTriggerDoorModel = hit:GetAttribute("Trigger_Number")  --Get's the 
 			]]
 			
 			if ToucehdTriggerDoorModel == hit.Parent.Parent.Gate:GetAttribute("GateNumber") then
+				---------A TWEEN FOR THE DOORS WILL BE FIRED HERE
 				task.wait(5)
-					hit.Parent.Parent.Gate:Destroy() print("THEY ARE EQUAL") --FIRES WHEN IT FINDS THE GATE WITH THE SAME ATTRIBUTE AS THE TRIGGER
+				hit.Parent.Parent.Gate:Destroy() 
+				print("TWEENING DOORS") 
 				else
-				print("DO NOT MATCH ATTRIBUTE")
+				print('NIL')
 			end
 			
 			
