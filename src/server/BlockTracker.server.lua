@@ -6,10 +6,13 @@ for _, Gates in pairs(game.Workspace.Triggers:GetDescendants()) do
 	end
 end ]]
 
+
+local TS = game:GetService("TweenService")
 local BlockModel = game.Workspace.BLOCK 
 local Triggers = game.Workspace.Triggers:GetChildren("Base")
  for _, Triggers in pairs(game.Workspace.Triggers:GetChildren()) do
-
+	
+	
 BlockModel.Touched:Connect(function(hit)
 
 		if hit and hit:IsDescendantOf(game.Workspace.Triggers) then --Checks wheter what touched the trigger is a chikld of the triggers folder
@@ -24,8 +27,8 @@ local ToucehdTriggerDoorModel = hit:GetAttribute("Trigger_Number")  --Get's the 
 			
 			if ToucehdTriggerDoorModel == hit.Parent.Parent.Gate:GetAttribute("GateNumber") then
 				---------A TWEEN FOR THE DOORS WILL BE FIRED HERE
-				task.wait(5)
 				hit.Parent.Parent.Gate:Destroy() 
+				task.wait(5)
 				print("TWEENING DOORS") 
 				else
 				print('NIL')
