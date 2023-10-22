@@ -13,16 +13,17 @@ script.Parent.Parent.RemoteEvent.OnServerEvent:Connect(function(plr,target,hit)
 		if target.Name ~= 'Baseplate' then
 			if (script.Parent.Parent.Parent.HumanoidRootPart.Position - target.Position).Magnitude > 30 then return end
 			rope = Instance.new('RopeConstraint')
+			rope.Color = BrickColor.new(0, 1, 0) --Green rope 
 			att0 = Instance.new('Attachment')
 			att1 = Instance.new('Attachment')
-			att0.Parent = target --Attache to target
-			att1.Parent = script.Parent.Parent.Parent.HumanoidRootPart ---Attach to me
+			att0.Parent = target --Where it's attached oon target
+			att1.Parent = script.Parent.Parent.Parent.LeftHand---Where it's attached on me
 			rope.Visible = true
 			rope.Parent = script.Parent.Parent.Parent.HumanoidRootPart
 			rope.Attachment0 = att0
 			rope.Attachment1 = att1
 			rope.Length = (script.Parent.Parent.Parent.HumanoidRootPart.Position - target.Position).Magnitude ---How is it between me and the target
-            print(rope.Length)
+            warn(math.ceil(rope.Length).." STUDS AWAY")
 		else
 			newRope = game.ServerStorage.ForRope:Clone()
 			newRope.Parent = workspace
