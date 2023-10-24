@@ -6,10 +6,15 @@ for _, Gates in pairs(game.Workspace.Triggers:GetDescendants()) do
 	end
 end ]]
 
+--[[
+-Find a way so that you can add Blocks or balls as a detector
+]]
+
 
 local TS = game:GetService("TweenService")
 local BlockModel = game.Workspace.BLOCK 
 local Triggers = game.Workspace.Triggers:GetChildren("Base")
+
  for _, Triggers in pairs(game.Workspace.Triggers:GetChildren()) do
 	
 	
@@ -25,13 +30,13 @@ local ToucehdTriggerDoorModel = hit:GetAttribute("Trigger_Number")  --Get's the 
 			print(ToucehdTriggerDoorModel)
 			]]
 			
-			if ToucehdTriggerDoorModel == hit.Parent.Parent.Gate:GetAttribute("GateNumber") then
+			if ToucehdTriggerDoorModel == hit.Parent.Parent.Gate:GetAttribute("GateNumber") then --Checks if the Trigger value the ball touch is equal to it oarent Gate if so then this run
 				---------A TWEEN FOR THE DOORS WILL BE FIRED HERE
-				hit.Parent.Parent.Gate:Destroy() 
+				hit.Parent.Parent.Gate:Destroy()  --Destroys the Gate with the given attribute
 				task.wait(5)
 				print("TWEENING DOORS") 
 				else
-				print('NIL')
+				warn("ERROR ON LINE 33")
 			end
 			
 			
