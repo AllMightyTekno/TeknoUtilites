@@ -1,4 +1,4 @@
-script.Parent.Activated:Connect(function()
+script.Parent.Activated:Connect(function() --When the client equips the Tool
 	local mouse = game.Players.LocalPlayer:GetMouse()
 	script.Parent.RemoteEvent:FireServer(mouse.Target,mouse.Hit)
    
