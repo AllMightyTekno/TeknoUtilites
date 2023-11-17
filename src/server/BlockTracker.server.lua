@@ -1,54 +1,52 @@
---[[ local gate
-for _, Gates in pairs(game.Workspace.Triggers:GetDescendants()) do
-	if Gates:IsA("Part") and Gates:GetAttribute("GateNumber") then
-		gate = Gates
-		print(gate:GetAttribute("GateNumber"))
-	end
-end ]]
-
---[[
--Find a way so that you can add Blocks or balls as a detector
-]]
-
-
---------------------------[VARIABLES]-------------------------------------------------------
 local TS = game:GetService("TweenService")
 local BlockModel = game.Workspace.BLOCK 
 local Triggers = game.Workspace.Triggers:GetChildren("Base")
+local TriggerGateModels = game.Workspace:FindFirstChild("Triggers")
 
---------------------------[END]-----------------------------------------------------------------
-
-
------>TweenInfo of every door on open 
-local TweenInfo = TS.TweenInfo(
-
-)
-
-
- for _, Triggers in pairs(game.Workspace.Triggers:GetChildren()) do --Ittereates through the Triggers folder and checks for all chuildren
+ for _, Triggers in pairs(game.Workspace.Triggers:GetChildren()) do
 	
 	
 BlockModel.Touched:Connect(function(hit)
 
-	
 		if hit and hit:IsDescendantOf(game.Workspace.Triggers) then --Checks wheter what touched the trigger is a chikld of the triggers folder
     --FIRES WHEN THE BLOCK TOUCHES THE TRIGGERS
 local TouchedTrigger = hit
-local TouchedDoorAttr = hit:GetAttribute("Trigger_Number")  --Get's the Attribute of the gate that's suppose to be opended by the player
+local ToucehdTriggerDoorModel = hit:GetAttribute("Trigger_Number")  --Get's the Attribute of the gate that's suppose to be opended by the player
 			
-			--[[ REFERENCE
-			print(hit.Parent.Parent.Gate:GetAttribute("GateNumber"))
-			print(ToucehdTriggerDoorModel)
-			This will print 1,2,3 in order with the more doors that are added
-			]]
 			
-			if TouchedDoorAttr == hit.Parent.Parent.Gate:GetAttribute("GateNumber") then --Checks if the Trigger value the ball touch is equal to it oarent Gate if so then this run
-				---------A TWEEN FOR THE DOORS WILL BE FIRED HERE
-				task.wait(5)	
-				hit.Parent.Parent.Gate:Destroy()  --Destroys the Gate with the given attribute
-				print("INIT DOOR TWEENS") 
-				else
-				warn("ERROR ON LINE 39")
+			if TriggerGateModels then --If the TriggersGate Model in the Triggers model is found.
+				
+				for _, part in pairs(TriggerGateModels:GetDescendants()) do
+					
+					if part.Name == "Gate" and ToucehdTriggerDoorModel == part:GetAttribute("GateNumber") then
+						
+						local partOriginalPosition = part.Position
+						local offset = Vector3.new(0, 0, 20) -- Adjust the offset as needed
+						local newCFrame = part.CFrame * CFrame.new(offset)
+						
+						local OpenTween = TS:Create(part,TweenInfo.new(6), {CFrame = newCFrame})
+							
+						OpenTween:Play()
+						part.Parent.Cross.Base.CanTouch = false
+						task.wait(10)
+						
+						if OpenTween.Completed then
+						
+							local offset = Vector3.new(0, 0, -20) -- Adjust the offset as needed
+							local newCFrame = part.CFrame * CFrame.new(offset)
+							local CloseTween = TS:Create(part,TweenInfo.new(6), {CFrame = newCFrame})
+
+							CloseTween:Play()
+							if CloseTween.Completed then
+								part.Parent.Cross.Base.CanTouch = true
+							end
+						end
+						
+						
+					end
+					
+				end
+				
 			end
 			
 			
