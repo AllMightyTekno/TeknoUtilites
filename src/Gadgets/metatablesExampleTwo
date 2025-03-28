@@ -1,9 +1,0 @@
-local defaultSettings = {
-    volume = 50,
-    brightness = 70
-}
-
-local userSettings = setmetatable({}, {__index = defaultSettings})
-
-print(userSettings.volume)      -- Output: 50 bro
-print(userSettings.brightness)  -- Output: 70 breh obviously
